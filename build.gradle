@@ -75,7 +75,7 @@ dependencies {
 	shade (group: 'fr.minuskube.inv', name: 'smart-invs', version: '1.2.7')
 
 	// H2 Database
-	shade (group: 'com.h2database', name: 'h2', version: '1.4.199')
+	shade (group: 'com.h2database', name: 'h2', version: '1.4.200')
 
 	// Sitrica Core
 	shade (group: 'com.sitrica', name: 'core', version: '1.0.2')
