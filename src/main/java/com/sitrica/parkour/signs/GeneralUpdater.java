@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import com.google.common.collect.Lists;
 import com.sitrica.core.messaging.Formatting;
 import com.sitrica.core.messaging.MessageBuilder;
+import com.sitrica.core.sounds.SoundPlayer;
 import com.sitrica.parkour.ProParkour;
 import com.sitrica.parkour.objects.Course;
 import com.sitrica.parkour.objects.ParkourPlayer;
@@ -112,11 +113,14 @@ public class GeneralUpdater extends SignUpdater {
 			index = 0;
 		selection.put(player.getUniqueId(), selections.get(index));
 
-		// Display the menu.
+		// Display the menu and effects.
 		lines.add(0, prefix);
-		player.getPlayer().ifPresent(bukkit -> bukkit.sendSignChange(sign.getLocation(), lines.stream()
-				.limit(4)
-				.toArray(String[]::new)));
+		player.getPlayer().ifPresent(bukkit -> {
+			new SoundPlayer(ProParkour.getInstance(), "click").playTo(bukkit);
+			bukkit.sendSignChange(sign.getLocation(), lines.stream()
+					.limit(4)
+					.toArray(String[]::new));
+		});
 	}
 
 }
