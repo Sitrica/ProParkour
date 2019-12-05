@@ -1,0 +1,27 @@
+# The version is to help determine which version this config is. Please don't modify this value.
+version: "@version@"
+
+# Information: Placeholders that are available for each message will be commented above it.
+# Default placeholders that exist on every message are %prefix% and %newline%/%nl%
+# Placeholders that if their object is found at the time of the message will be present: %player%, %sender% and %string% - sender being the user the message is sending too.
+
+# All command and general messages.
+messages:
+    # The main prefix for all chat messages.
+    prefix: "&7[&dProParkour&7] &r"
+    must-be-player: "&cYou must be a player to use this command."
+    # When a player has no permissions to perform an action.
+    no-permission: "&cYou do not have permission to do that."
+    command-doesnt-exist: "&7The command you entered does not exist or is spelt incorrectly."
+    # Called when a command is entered incorrectly.
+    # This and invalid-command-correction are called at same time.
+    invalid-command: "&cInvalid Command!"
+    invalid-command-correction: "&7The valid syntax is: &c%command%&7."
+    version: "&d%version% &7<> = required [] = optional"
+
+# The setup command messages
+setup:
+    sign:
+        no-type: "&cNo sign type with the name &l%type%&c could be found. Possible types for the second line are: &d%types%."
+        no-course: "&cNo course with the name &l%name%&c could be found."
+        created: "&aYou have created a &l%type%&a type sign for course &l%course%&a!"

@@ -1,0 +1,29 @@
+name: ProParkour
+description: The way parkour should be done.
+authors: [LimeGlass, Sitrica]
+main: com.sitrica.parkour.ProParkour
+version: @version@
+api-version: 1.14
+softdepend: [PlaceholderAPI, Citizens, Citizens2, Vault, HolographicDisplays, ProtocolLib]
+commands:
+  proparkour:
+    description: View information on the ProParkour plugin.
+    default: true
+    aliases: [pp, prop, parkour]
+    usage: /parkour
+permissions:
+  proparkour.*:
+    description: Gives access to all ProParkour commands.
+    children:
+      proparkour.signs.*: true
+  proparkour.signs.*:
+    description: Gives access to all ProParkour sign usages.
+    children:
+      proparkour.signs.create: true
+      proparkour.signs.interact: true
+  proparkour.signs.create:
+    description: Grants the ability to create ProParkour signs.
+  proparkour.signs.interact:
+    description: Grants the ability to interact with ProParkour signs.
+    default: true
+  
