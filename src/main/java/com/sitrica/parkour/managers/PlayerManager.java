@@ -13,11 +13,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.google.common.collect.ImmutableMap;
 import com.sitrica.core.database.Database;
 import com.sitrica.core.manager.Manager;
+import com.sitrica.core.messaging.MessageBuilder;
+import com.sitrica.core.placeholders.Placeholder;
+import com.sitrica.core.placeholders.Placeholders;
 import com.sitrica.core.utils.IntervalUtils;
 import com.sitrica.parkour.ProParkour;
+import com.sitrica.parkour.objects.Course;
 import com.sitrica.parkour.objects.ParkourPlayer;
+import com.sitrica.parkour.serializers.ParkourPlayerSerializer;
 
 public class PlayerManager extends Manager {
 
@@ -28,20 +34,34 @@ public class PlayerManager extends Manager {
 		super(true);
 		ProParkour instance = ProParkour.getInstance();
 		FileConfiguration configuration = instance.getConfig();
-		database = getNewDatabase(instance, "player-table", ParkourPlayer.class);
+		database = getNewDatabase(instance, "player-table", ParkourPlayer.class, ImmutableMap.of(ParkourPlayer.class, new ParkourPlayerSerializer()));
 		String interval = configuration.getString("database.autosave", "5 miniutes");
 		Bukkit.getScheduler().runTaskTimerAsynchronously(instance, () -> players.forEach(player -> database.put(player.getUniqueId() + "", player)), 0, IntervalUtils.getInterval(interval));
+
+		// Default Placeholders
+		Placeholders.registerPlaceholder(new Placeholder<ParkourPlayer>("%course%") {
+			@Override
+			public String replace(ParkourPlayer player) {
+				Optional<Course> course = player.getCurrentCourse();
+				if (course.isPresent())
+					return course.get().getName();
+				return new MessageBuilder(instance, "course.not-in-course").get();
+			}
+		});
 	}
 
 	public ParkourPlayer getParkourPlayer(Player player) {
 		return getParkourPlayer(player.getUniqueId()).orElseGet(() -> {
 					ParkourPlayer p = new ParkourPlayer(player.getUniqueId());
+					database.put(player.getUniqueId() + "", p);
 					players.add(p);
 					return p;
 				});
 	}
 
 	public Optional<ParkourPlayer> getParkourPlayer(OfflinePlayer player) {
+		if (player.isOnline())
+			return Optional.of(getParkourPlayer(player.getPlayer()));
 		return getParkourPlayer(player.getUniqueId());
 	}
 

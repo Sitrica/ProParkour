@@ -13,6 +13,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.sitrica.core.SourPlugin;
+import com.sitrica.core.command.CommandHandler;
 import com.sitrica.core.manager.ExternalManager;
 import com.sitrica.core.manager.Manager;
 import com.sitrica.core.manager.ManagerHandler;
@@ -22,9 +23,9 @@ import fr.minuskube.inv.InventoryManager;
 public class ProParkour extends SourPlugin {
 
 	private final Map<String, FileConfiguration> configurations = new HashMap<>();
-	private final String packageName = "me.limeglass.deadbycraft";
+	private final String packageName = "com.sitrica.parkour";
 	private static InventoryManager inventoryManager;
-	//private CommandHandler commandHandler;
+	private CommandHandler commandHandler;
 	private ManagerHandler managerHandler;
 	private ProParkourAPI API;
 	private static ProParkour instance;
@@ -59,7 +60,7 @@ public class ProParkour extends SourPlugin {
 			}
 		}
 		managerHandler = new ManagerHandler(this);
-		//commandHandler = new CommandHandler(this);
+		commandHandler = new CommandHandler(this, "proparkour", packageName + ".commands");
 		inventoryManager = new InventoryManager(this);
 		inventoryManager.init();
 		API = new ProParkourAPI(this);
@@ -93,16 +94,18 @@ public class ProParkour extends SourPlugin {
 	 * @param expected The expected Class that extends Manager.
 	 * @return The Manager that matches the defined class.
 	 */
+	@Override
 	public <T extends Manager> T getManager(Class<T> expected) {
 		return managerHandler.getManager(expected);
 	}
 
 	/**
-	 * @return The CommandManager allocated to the Kingdoms instance.
+	 * @return The CommandManager allocated to the plugin.
 	 */
-//	public CommandHandler getCommandHandler() {
-//		return commandHandler;
-//	}
+	@Override
+	public CommandHandler getCommandHandler() {
+		return commandHandler;
+	}
 
 	public ManagerHandler getManagerHandler() {
 		return managerHandler;

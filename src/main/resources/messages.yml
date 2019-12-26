@@ -19,9 +19,46 @@ messages:
     invalid-command-correction: "&7The valid syntax is: &c%command%&7."
     version: "&d%version% &7<> = required [] = optional"
 
+course:
+    not-in-course: "&cNot on any course."
+
 # The setup command messages
 setup:
+    not-in-setup: "&cYou are currently not in setup mode."
+    1:
+        - "&eYou have entered setup mode."
+        - "&dType &c/proparkour setup quit&d anytime, to cancel the setup."
+        - "&dEnter the name of this Course into the anvil and click the newly named item."
+    2:
+        - "&eYou set the name to &l%name%"
+        - "&dNow use &e/proparkour setup start&d to set the starting location based on your location."
+    3:
+        - "&dNow use &e/proparkour setup end&d to set the ending location."
+    4:
+        - "&dNow use &e/proparkour setup finish&d to finish the setup."
     sign:
         no-type: "&cNo sign type with the name &l%type%&c could be found. Possible types for the second line are: &d%types%."
         no-course: "&cNo course with the name &l%name%&c could be found."
         created: "&aYou have created a &l%type%&a type sign for course &l%course%&a!"
+    complete: "&3Setup complete for course %name%!"
+    quit: "&cYou have quit the setup."
+    start: "&eYou just set the start location to &l%start%"
+    end: "&eYou just set the end location to &l%end%"
+    no-spaces: "&cThe Mine's initial name in setup cannot contain spaces."
+    not-in-setup: "&cYou are currently not in a setup. Type &l/dbc setup &cto start."
+    already-exists: "&cThe name &l%name%&c is already taken by another course."
+    setup-not-completed: "&cThe setup has some unset values, make sure you have ran; start and end commands."
+
+# All messages relating to commands.
+commands:
+    proparkour:
+        description: "Display the main page."
+        syntax: "/proparkour"
+    admin:
+        description: "View admin commands."
+        syntax: "&c/proparkour admin"
+    join:
+        description: "Join a course."
+        syntax: "&6/proparkour join <course>"
+        already-on-course: "&cYou are already on a course, type &l/parkour leave &cbefore joining new course."
+        not-a-course: "&cThe course &l%input% &cdoes not exist."

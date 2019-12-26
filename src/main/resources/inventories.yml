@@ -1,0 +1,20 @@
+# The version is to help determine which version this config is. Please don't modify this value.
+version: "@version@"
+
+next:
+    title: "&a&lNext page"
+    material: "ARROW"
+previous:
+    title: "&c&lPrevious page"
+    material: "ARROW"
+close:
+    title: "&e&lClose menu"
+    material: "OAK_DOOR"
+
+# All configurations relating to inventories.
+inventories:
+    setup:
+        name-anvil:
+            title: "Type Name Here..."
+            material: "PAPER"
+            glowing: true

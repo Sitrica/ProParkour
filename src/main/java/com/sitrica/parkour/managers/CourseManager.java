@@ -33,13 +33,18 @@ public class CourseManager extends Manager {
 		database = getNewDatabase(instance, "course-table", Course.class, serializers);
 		String interval = configuration.getString("database.autosave", "5 miniutes");
 		database.getKeys().forEach(name -> courses.add(database.get(name)));
-		Bukkit.getScheduler().runTaskTimerAsynchronously(instance, () -> courses.forEach(course -> database.put(course.getName() + "", course)), 0, IntervalUtils.getInterval(interval));
+		Bukkit.getScheduler().runTaskTimerAsynchronously(instance, () -> courses.forEach(course -> database.put(course.getName(), course)), 0, IntervalUtils.getInterval(interval));
 	}
 
 	public Optional<Course> getCourse(String name) {
 		return courses.stream()
 				.filter(course -> course.getName().equalsIgnoreCase(name))
 				.findFirst();
+	}
+
+	public void addCourse(Course course) {
+		courses.add(course);
+		database.put(course.getName(), course);
 	}
 
 	public Set<Course> getCourses() {

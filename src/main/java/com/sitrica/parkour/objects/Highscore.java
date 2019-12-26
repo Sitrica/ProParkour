@@ -4,13 +4,15 @@ import java.util.UUID;
 
 public class Highscore {
 
+	private final long time, fails;
 	private final String course;
-	private long time, fails;
 	private final UUID uuid;
 
 	public Highscore(UUID uuid, String course, long time, long fails) {
 		this.course = course;
+		this.fails = fails;
 		this.uuid = uuid;
+		this.time = time;
 	}
 
 	public String getCourseName() {

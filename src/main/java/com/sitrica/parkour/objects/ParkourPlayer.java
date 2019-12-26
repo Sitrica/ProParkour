@@ -11,6 +11,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 public class ParkourPlayer {
 
+	private transient Course course;
 	private ItemStack[] inventory;
 	private Location location;
 	private final UUID uuid;
@@ -30,6 +31,14 @@ public class ParkourPlayer {
 			playerInventory.clear();
 			playerInventory.setContents(inventory);
 		});
+	}
+
+	public Optional<Course> getCurrentCourse() {
+		return Optional.ofNullable(course);
+	}
+
+	public void setCurrentCourse(Course course) {
+		this.course = course;
 	}
 
 	public long getExperience() {

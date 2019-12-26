@@ -59,7 +59,17 @@ public class GeneralUpdater extends SignUpdater {
 
 	@Override
 	public void onLeftClick(ParkourPlayer player, SignInfo sign, Course course) {
-		// TODO
+		//TODO
+		switch (selection.getOrDefault(player.getPlayer(), Selection.PLAY)) {
+			case GHOSTS:
+				break;
+			case LEADERBOARD:
+				break;
+			case PLAY:
+				break;
+			case SETTINGS:
+				break;
+		}
 	}
 
 	private enum Selection {
