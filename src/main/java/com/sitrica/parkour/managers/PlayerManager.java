@@ -86,9 +86,11 @@ public class PlayerManager extends Manager {
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
+		ProParkour instance = ProParkour.getInstance();
 		ParkourPlayer gamePlayer = getParkourPlayer(player);
+		gamePlayer.getCurrentCourse().ifPresent(course -> course.removePlayer(gamePlayer));
 		database.put(player.getUniqueId() + "", gamePlayer);
-		Bukkit.getScheduler().runTaskLaterAsynchronously(ProParkour.getInstance(), () -> players.removeIf(p -> p.getUniqueId().equals(player.getUniqueId())), 1);
+		Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> players.removeIf(p -> p.getUniqueId().equals(player.getUniqueId())), 1);
 	}
 
 }

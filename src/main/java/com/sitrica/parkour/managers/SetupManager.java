@@ -48,7 +48,7 @@ public class SetupManager extends Manager {
 
 	public Setup enterSetup(Player player) {
 		ProParkour instance = ProParkour.getInstance();
-		new ListMessageBuilder(instance, "setup.1")
+		new ListMessageBuilder(instance, false, "setup.1")
 				.setPlaceholderObject(player)
 				.send(player);
 		Setup setup = new Setup(player);
@@ -58,7 +58,7 @@ public class SetupManager extends Manager {
 				.build();
 		new AnvilMenu(search, player, name -> {
 			if (name.contains(" ")) {
-				new MessageBuilder(instance, "setup.no-spaces")
+				new MessageBuilder(instance, false, "setup.no-spaces")
 						.setPlaceholderObject(player)
 						.replace("%name%", name)
 						.send(player);
@@ -75,7 +75,7 @@ public class SetupManager extends Manager {
 			}
 			setups.add(setup);
 			setup.setName(name);
-			new ListMessageBuilder(instance, "setup.2")
+			new ListMessageBuilder(instance, false, "setup.2")
 					.setPlaceholderObject(player)
 					.replace("%name%", name)
 					.send(player);

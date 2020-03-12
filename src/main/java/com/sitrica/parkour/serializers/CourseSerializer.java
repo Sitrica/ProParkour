@@ -14,6 +14,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.sitrica.core.database.Serializer;
 import com.sitrica.parkour.objects.Course;
+import com.sitrica.parkour.objects.Highscore;
 import com.sitrica.parkour.signs.SignInfo;
 
 public class CourseSerializer implements Serializer<Course> {
@@ -29,6 +30,9 @@ public class CourseSerializer implements Serializer<Course> {
 		JsonArray array = new JsonArray();
 		course.getSigns().forEach(sign -> array.add(context.serialize(sign, SignInfo.class)));
 		json.add("signs", array);
+		JsonArray highscores = new JsonArray();
+		course.getHighscores().forEach(highscore -> highscores.add(context.serialize(highscore, Highscore.class)));
+		json.add("highscores", highscores);
 		return json;
 	}
 
@@ -59,7 +63,19 @@ public class CourseSerializer implements Serializer<Course> {
 				signs.add(sign);
 			});
 		}
+		JsonElement highscoresElement = object.get("highscores");
+		List<Highscore> highscores = new ArrayList<>();
+		if (highscoresElement != null && !highscoresElement.isJsonNull() && highscoresElement.isJsonArray()) {
+			JsonArray array = highscoresElement.getAsJsonArray();
+			array.forEach(element -> {
+				Highscore highscore = context.deserialize(element, Highscore.class);
+				if (highscore == null)
+					return;
+				highscores.add(highscore);
+			});
+		}
 		Course course = new Course(name, starting, ending);
+		highscores.forEach(highscore -> course.addHighscore(highscore));
 		signs.forEach(sign -> course.addSign(sign));
 		return course;
 	}

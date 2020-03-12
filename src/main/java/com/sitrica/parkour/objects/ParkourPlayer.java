@@ -11,7 +11,9 @@ import org.bukkit.inventory.PlayerInventory;
 
 public class ParkourPlayer {
 
+	// Used internally for course manager data.
 	private transient Course course;
+
 	private ItemStack[] inventory;
 	private Location location;
 	private final UUID uuid;

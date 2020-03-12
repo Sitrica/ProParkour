@@ -17,13 +17,14 @@ import com.sitrica.core.command.CommandHandler;
 import com.sitrica.core.manager.ExternalManager;
 import com.sitrica.core.manager.Manager;
 import com.sitrica.core.manager.ManagerHandler;
+import com.sitrica.parkour.commands.ProParkourCommand;
 
 import fr.minuskube.inv.InventoryManager;
 
 public class ProParkour extends SourPlugin {
 
 	private final Map<String, FileConfiguration> configurations = new HashMap<>();
-	private final String packageName = "com.sitrica.parkour";
+	private final static String packageName = "com.sitrica.parkour";
 	private static InventoryManager inventoryManager;
 	private CommandHandler commandHandler;
 	private ManagerHandler managerHandler;
@@ -31,7 +32,7 @@ public class ProParkour extends SourPlugin {
 	private static ProParkour instance;
 
 	public ProParkour() {
-		super("&7[&dProParkour&7]&r");
+		super("&7[&dProParkour&7]&r", packageName + ".managers");
 	}
 
 	@Override
@@ -60,11 +61,12 @@ public class ProParkour extends SourPlugin {
 			}
 		}
 		managerHandler = new ManagerHandler(this);
-		commandHandler = new CommandHandler(this, "proparkour", packageName + ".commands");
+		commandHandler = new CommandHandler(this, ProParkourCommand.class, packageName + ".commands");
+		getCommand("proparkour").setExecutor(commandHandler);
 		inventoryManager = new InventoryManager(this);
 		inventoryManager.init();
 		API = new ProParkourAPI(this);
-		consoleMessage(getPrefix() + "has been enabled!");
+		consoleMessage("has been enabled!");
 	}
 
 	public <T extends ExternalManager> T getExternalManager(Class<T> expected) {

@@ -28,16 +28,12 @@ repositories {
 		url 'https://ci.filoghost.me/plugin/repository/everything/'
 	}
 
-	// AnvilGUI
-	maven {
-		url "https://nexus.wesjd.net/repository/thirdparty/"
-	}
-
 	// Citizens
 	maven {
 		url "http://repo.citizensnpcs.co/"
 	}
 
+	// Jitpack
 	maven {
 		url 'https://jitpack.io'
 	}
@@ -69,7 +65,7 @@ dependencies {
 	implementation (group: 'com.github.MilkBowl', name: 'VaultAPI', version: '1.7')
 
 	// AnvilGUI
-	shade (group: 'net.wesjd', name: 'anvilgui', version: '1.2.1-SNAPSHOT')
+	shade (group: 'com.github.WesJD', name: 'AnvilGUI', version: 'master-SNAPSHOT')
 
 	// Smart-Invs
 	shade (group: 'fr.minuskube.inv', name: 'smart-invs', version: '1.2.7')
@@ -78,7 +74,7 @@ dependencies {
 	shade (group: 'com.h2database', name: 'h2', version: '1.4.200')
 
 	// Sitrica Core
-	shade (group: 'com.sitrica', name: 'core', version: '1.0.5a')
+	shade (group: 'com.sitrica', name: 'core', version: '1.0.10')
 
 	shade fileTree(dir: 'libraries', include: '*.jar')
 

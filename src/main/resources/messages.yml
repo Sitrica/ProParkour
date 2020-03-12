@@ -26,6 +26,7 @@ course:
 setup:
     not-in-setup: "&cYou are currently not in setup mode."
     1:
+        - ""
         - "&eYou have entered setup mode."
         - "&dType &c/proparkour setup quit&d anytime, to cancel the setup."
         - "&dEnter the name of this Course into the anvil and click the newly named item."
@@ -62,3 +63,6 @@ commands:
         syntax: "&6/proparkour join <course>"
         already-on-course: "&cYou are already on a course, type &l/parkour leave &cbefore joining new course."
         not-a-course: "&cThe course &l%input% &cdoes not exist."
+    setup:
+        description: "Setup a course."
+        syntax: "&c/proparkour setup"

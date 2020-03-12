@@ -66,6 +66,7 @@ public class GeneralUpdater extends SignUpdater {
 			case LEADERBOARD:
 				break;
 			case PLAY:
+				course.addPlayer(player);
 				break;
 			case SETTINGS:
 				break;

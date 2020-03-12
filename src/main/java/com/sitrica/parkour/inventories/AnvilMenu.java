@@ -43,13 +43,13 @@ public class AnvilMenu {
 
 		Bukkit.getPluginManager().registerEvents(listener, ProParkour.getInstance());
 
-		Object container = WRAPPER.newContainerAnvil(holder);
+		Object container = WRAPPER.newContainerAnvil(holder, "parkour");
 
 		inventory = WRAPPER.toBukkitInventory(container);
 		inventory.setItem(0, searchItem);
 
-		containerId = WRAPPER.getNextContainerId(holder);
-		WRAPPER.sendPacketOpenWindow(holder, containerId);
+		containerId = WRAPPER.getNextContainerId(holder, container);
+		WRAPPER.sendPacketOpenWindow(holder, containerId, "parkour");
 		WRAPPER.setActiveContainer(holder, container);
 		WRAPPER.setActiveContainerId(container, containerId);
 		WRAPPER.addActiveContainerSlotListener(container, holder);
