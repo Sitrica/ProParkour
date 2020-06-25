@@ -25,7 +25,7 @@ repositories {
 
 	// HolographicDisplays
 	maven {
-		url 'https://repo.codemc.io/'
+		url 'https://repo.codemc.io/repository/maven-public/'
 	}
 
 	// Citizens
