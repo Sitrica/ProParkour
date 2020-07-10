@@ -56,7 +56,7 @@ dependencies {
 	}
 
 	// Citizens
-	implementation (group: 'net.citizensnpcs', name: 'citizensapi', version: '2.0.24-SNAPSHOT')
+	implementation (group: 'net.citizensnpcs', name: 'citizensapi', version: '2.0.27-SNAPSHOT')
 
 	// Spigot
 	implementation (group: 'org.spigotmc', name: 'spigot-api', version: '1.16.1-R0.1-SNAPSHOT')
